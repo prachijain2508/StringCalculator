@@ -39,6 +39,7 @@ require 'minitest/autorun'
    
     def test_negative_numbers_raise_exception
       error = assert_raises(RuntimeError) { StringCalculator.add("1,-2,3,-4") }
+			assert_match "negative numbers not allowed -2,-4", error.message
     end
  end
    
