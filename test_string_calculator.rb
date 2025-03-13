@@ -24,9 +24,21 @@ require 'minitest/autorun'
    def test_custom_delimiter
      assert_equal(3, StringCalculator.add("//;\n1;2"))
    end
+
+   def test_custom_delimiter_with_newline
+		assert_equal(6, StringCalculator.add("//|\n1|2\n3"))
+		end
+
+    def test_ignore_numbers_greater_than_1000
+      assert_equal(2, StringCalculator.add("2,1001"))
+    end
+
+    def test_only_large_numbers_returns_zero
+      assert_equal(0, StringCalculator.add("1001,1002,2000"))
+    end
    
-   def test_negative_numbers
-     assert_raises(RuntimeError) { StringCalculator.add("1,-2,3,-4") }
-   end
+    def test_negative_numbers_raise_exception
+      error = assert_raises(RuntimeError) { StringCalculator.add("1,-2,3,-4") }
+    end
  end
    
