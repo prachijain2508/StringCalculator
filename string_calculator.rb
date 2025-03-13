@@ -13,7 +13,6 @@ class StringCalculator
 	end
 
 	def self.parse_numbers(numbers, delimiter)
-		numbers = numbers.gsub(%r{//\[.*?\]\n}, '') 
-		numbers.split(delimiter).map(&:to_i)
+	  numbers.split(/#{delimiter}/).map(&:to_i).reject { |num| num > 1000 }
 	end
 end
